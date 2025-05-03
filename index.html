@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waypoint Geospatial – Lead Form</title>
+</head>
+<body>
+  <h2>Waypoint Geospatial – Lead Intake Form</h2>
+  <form id="leadForm">
+    <label>Lead Type:</label>
+    <select name="type" required>
+      <option>Land Buyer</option>
+      <option>Realtor</option>
+      <option>Home Builder</option>
+      <option>Surveyor</option>
+      <option>Title Company</option>
+      <option>Mobile Home Dealer</option>
+      <option>Contractor / Landscaper</option>
+      <option>Government Contact</option>
+      <option>Finance / Mortgage</option>
+      <option>Homesteader / Farmer</option>
+    </select><br><br>
+
+    <label>Name:</label>
+    <input type="text" name="name" required><br><br>
+
+    <label>Contact Info:</label>
+    <input type="text" name="contact" required><br><br>
+
+    <label>Location:</label>
+    <input type="text" name="location"><br><br>
+
+    <label>Where Found:</label>
+    <input type="text" name="source"><br><br>
+
+    <label>Notes:</label>
+    <textarea name="notes"></textarea><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script type="module" src="submit.js"></script>
+</body>
+</html>
