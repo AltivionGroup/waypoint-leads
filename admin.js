@@ -68,5 +68,16 @@ filterType.addEventListener("change", loadLeads);
 // Initial load
 loadLeads();
 
+import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+
+// Logout functionality
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  const auth = getAuth();
+  signOut(auth).then(() => {
+    window.location.href = "login.html";
+  }).catch((error) => {
+    alert("Error logging out: " + error.message);
+  });
+});
 
 
