@@ -5,12 +5,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "your-project-id.firebaseapp.com",
-  projectId: "your-project-id",
-  storageBucket: "your-project-id.appspot.com",
-  messagingSenderId: "SENDER_ID",
-  appId: "APP_ID",
+  apiKey: "AIzaSyDE8iN10DbsxYO4ZRU-bBTm8zK5f8eQj48",
+  authDomain: "waypoint-leads-13d86.firebaseapp.com",
+  projectId: "waypoint-leads-13d86",
+  storageBucket: "waypoint-leads-13d86.firebasestorage.app",
+  messagingSenderId: "391230201087",
+  appId: "1:391230201087:web:fa32b736de9a53c6e5c0ca",
+  measurementId: "G-XM1D685V3J"
 };
 
 const app = initializeApp(firebaseConfig);
