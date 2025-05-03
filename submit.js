@@ -3,12 +3,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDE8iN10DbsxYO4ZRU-bBTm8zK5f8eQj48",
+  authDomain: "waypoint-leads-13d86.firebaseapp.com",
+  projectId: "waypoint-leads-13d86",
+  storageBucket: "waypoint-leads-13d86.firebasestorage.app",
+  messagingSenderId: "391230201087",
+  appId: "1:391230201087:web:fa32b736de9a53c6e5c0ca",
+  measurementId: "G-XM1D685V3J"
 };
 
 const app = initializeApp(firebaseConfig);
