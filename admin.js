@@ -77,6 +77,43 @@ function displayLeads(leads) {
 row.dataset.id = lead.id; // store doc ID
   });
 
+  document.getElementById("editAllBtn").addEventListener("click", () => {
+  document.querySelectorAll("#leadsTable td[contenteditable]").forEach(cell => {
+    cell.setAttribute("contenteditable", "true");
+    cell.style.backgroundColor = "#f1faff";
+  });
+  document.getElementById("saveAllBtn").disabled = false;
+});
+
+document.getElementById("saveAllBtn").addEventListener("click", async () => {
+  const rows = document.querySelectorAll("#leadsTable tbody tr");
+
+  for (let row of rows) {
+    const id = row.dataset.id;
+    const docRef = doc(db, "leads", id);
+
+    const updatedData = {};
+    row.querySelectorAll("td[contenteditable]").forEach(cell => {
+      const field = cell.getAttribute("data-field");
+      const value = cell.textContent.trim();
+      updatedData[field] = value;
+    });
+
+    await updateDoc(docRef, updatedData);
+  }
+
+  // Exit edit mode
+  document.querySelectorAll("#leadsTable td[contenteditable]").forEach(cell => {
+    cell.setAttribute("contenteditable", "false");
+    cell.style.backgroundColor = "";
+  });
+
+  document.getElementById("saveAllBtn").disabled = true;
+
+  alert("All updates saved successfully!");
+  displayLeads(allLeads); // Optional re-render
+});
+
   // 🎯 Status update live-save
   document.querySelectorAll(".status-select").forEach((dropdown) => {
     dropdown.addEventListener("change", async (e) => {
