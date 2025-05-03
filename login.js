@@ -16,6 +16,14 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const loginBtn = document.getElementById("loginBtn");
+
+loginBtn.disabled = true;
+loginBtn.textContent = "Logging in...";
+
+// then after login success or failure
+loginBtn.disabled = false;
+loginBtn.textContent = "Login";
 
 document.getElementById("loginForm").addEventListener("submit", (e) => {
   e.preventDefault();
