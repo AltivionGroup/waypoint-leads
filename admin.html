@@ -31,31 +31,35 @@
     <script type="module" src="admin.js" defer></script>
   </head>
   <body>
-    <h2>Waypoint Geospatial – Admin Dashboard</h2>
+    <h2>Waypoint Leads Dashboard</h2>
 
-    <label for="filterType">Filter by Lead Type:</label>
-    <select id="filterType">
-      <option value="">All</option>
-      <option value="Land Buyer">Land Buyer</option>
-      <option value="Realtor">Realtor</option>
-      <option value="Home Builder">Home Builder</option>
-      <option value="Surveyor">Surveyor</option>
-      <option value="Title Company">Title Company</option>
-    </select>
+<input type="text" id="searchInput" placeholder="Search by name or location" />
 
-    <table id="leadsTable">
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Name</th>
-          <th>Contact</th>
-          <th>Location</th>
-          <th>Source</th>
-          <th>Notes</th>
-          <th>Timestamp</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+<label for="filterType">Filter by Lead Type:</label>
+<select id="filterType">
+  <option value="All">All</option>
+  <option value="Land Buyer">Land Buyer</option>
+  <option value="Realtor">Realtor</option>
+  <option value="Home Builder">Home Builder</option>
+</select>
+
+<button id="exportBtn">Export CSV</button>
+
+<table border="1" id="leadsTable">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Name</th>
+      <th>Contact</th>
+      <th>Location</th>
+      <th>Source</th>
+      <th>Notes</th>
+      <th>Status</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
   </body>
 </html>
