@@ -59,21 +59,22 @@ function displayLeads(leads) {
   leads.forEach((lead) => {
     const row = tableBody.insertRow();
     row.innerHTML = `
-      <td>${lead.type}</td>
-      <td>${lead.name}</td>
-      <td>${lead.contact}</td>
-      <td>${lead.location || ""}</td>
-      <td>${lead.source || ""}</td>
-      <td>${lead.notes || ""}</td>
-      <td>
-        <select data-id="${lead.id}" class="status-select">
-          <option ${lead.status === "New" ? "selected" : ""}>New</option>
-          <option ${lead.status === "Contacted" ? "selected" : ""}>Contacted</option>
-          <option ${lead.status === "Closed" ? "selected" : ""}>Closed</option>
-        </select>
-      </td>
-      <td>${lead.timestamp ? new Date(lead.timestamp.toDate()).toLocaleString() : ""}</td>
-    `;
+  <td contenteditable="false" data-field="type">${lead.type}</td>
+  <td contenteditable="false" data-field="name">${lead.name}</td>
+  <td contenteditable="false" data-field="contact">${lead.contact}</td>
+  <td contenteditable="false" data-field="location">${lead.location || ""}</td>
+  <td contenteditable="false" data-field="source">${lead.source || ""}</td>
+  <td contenteditable="false" data-field="notes">${lead.notes || ""}</td>
+  <td>
+    <select data-id="${lead.id}" class="status-select">
+      <option ${lead.status === "New" ? "selected" : ""}>New</option>
+      <option ${lead.status === "Contacted" ? "selected" : ""}>Contacted</option>
+      <option ${lead.status === "Closed" ? "selected" : ""}>Closed</option>
+    </select>
+  </td>
+  <td>${lead.timestamp ? new Date(lead.timestamp.toDate()).toLocaleString() : ""}</td>
+`;
+row.dataset.id = lead.id; // store doc ID
   });
 
   // 🎯 Status update live-save
