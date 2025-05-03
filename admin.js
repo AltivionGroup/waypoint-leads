@@ -63,7 +63,9 @@ async function loadLeads() {
   });
 }
 
-filterType.addEventListener("change", loadLeads);
+document.getElementById("queryBtn").addEventListener("click", () => {
+  displayLeads(allLeads);
+});
 
 // Initial load
 loadLeads();
