@@ -1,5 +1,26 @@
+import {
+  getAuth,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+
+// Redirect to login if not signed in
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = "login.html";
+  } else {
+    loadLeads(); // Load only if authenticated
+  }
+});
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
-import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  onSnapshot,
+} from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
@@ -13,79 +34,35 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const tableBody = document.querySelector("#leadsTable tbody");
-const filter = document.getElementById("filterType");
-const searchInput = document.getElementById("searchInput");
-const exportBtn = document.getElementById("exportBtn");
+const leadsTable = document.querySelector("#leadsTable tbody");
+const filterType = document.getElementById("filterType");
 
-let allLeads = [];
+function renderRow(doc) {
+  const data = doc.data();
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${data.type}</td>
+    <td>${data.name}</td>
+    <td>${data.contact}</td>
+    <td>${data.location || ""}</td>
+    <td>${data.source || ""}</td>
+    <td>${data.notes || ""}</td>
+    <td>${new Date(data.timestamp?.toDate()).toLocaleString()}</td>
+  `;
+  leadsTable.appendChild(row);
+}
 
 async function loadLeads() {
-  tableBody.innerHTML = "";
-  allLeads = [];
-  const querySnapshot = await getDocs(collection(db, "leads"));
-  querySnapshot.forEach((docSnap) => {
-    const lead = docSnap.data();
-    lead.id = docSnap.id;
-    allLeads.push(lead);
-  });
-  displayLeads(allLeads);
-}
-
-function displayLeads(leads) {
-  tableBody.innerHTML = "";
-  const filtered = leads.filter((lead) => {
-    const matchType = filter.value === "All" || lead.type === filter.value;
-    const matchSearch =
-      lead.name.toLowerCase().includes(searchInput.value.toLowerCase()) ||
-      (lead.location && lead.location.toLowerCase().includes(searchInput.value.toLowerCase()));
-    return matchType && matchSearch;
-  });
-
-  filtered.forEach((lead) => {
-    const row = tableBody.insertRow();
-    row.innerHTML = `
-      <td>${lead.type}</td>
-      <td>${lead.name}</td>
-      <td>${lead.contact}</td>
-      <td>${lead.location}</td>
-      <td>${lead.source}</td>
-      <td>${lead.notes}</td>
-      <td>
-        <select data-id="${lead.id}" class="status-select">
-          <option ${lead.status === "New" ? "selected" : ""}>New</option>
-          <option ${lead.status === "Contacted" ? "selected" : ""}>Contacted</option>
-          <option ${lead.status === "Closed" ? "selected" : ""}>Closed</option>
-        </select>
-      </td>
-      <td>${new Date(lead.timestamp.toDate()).toLocaleString()}</td>
-    `;
-  });
-
-  document.querySelectorAll(".status-select").forEach((dropdown) => {
-    dropdown.addEventListener("change", async (e) => {
-      const docRef = doc(db, "leads", e.target.dataset.id);
-      await updateDoc(docRef, { status: e.target.value });
-    });
+  leadsTable.innerHTML = ""; // clear table
+  const snapshot = await getDocs(collection(db, "leads"));
+  snapshot.forEach((doc) => {
+    if (!filterType.value || doc.data().type === filterType.value) {
+      renderRow(doc);
+    }
   });
 }
 
-function exportCSV() {
-  let csv = "Type,Name,Contact,Location,Source,Notes,Status,Time\n";
-  allLeads.forEach((lead) => {
-    csv += `"${lead.type}","${lead.name}","${lead.contact}","${lead.location}","${lead.source}","${lead.notes}","${lead.status || ""}","${new Date(lead.timestamp.toDate()).toLocaleString()}"\n`;
-  });
+filterType.addEventListener("change", loadLeads);
 
-  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.setAttribute("download", "waypoint_leads.csv");
-  link.click();
-}
-
-// Listeners
-filter.addEventListener("change", () => displayLeads(allLeads));
-searchInput.addEventListener("input", () => displayLeads(allLeads));
-exportBtn.addEventListener("click", exportCSV);
-
+// Initial load
 loadLeads();
