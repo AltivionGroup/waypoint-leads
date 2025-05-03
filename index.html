@@ -6,46 +6,50 @@
   <script type="module" src="submit.js" defer></script>
   <style>
     body {
-      background-color: #0c1c2e;
-      color: #ffffff;
+      margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #0c1c2e, #0a2338);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: 0;
+      color: #ffffff;
     }
 
-    .form-container {
-      background-color: #152a3f;
-      padding: 40px;
+    .form-box {
+      background: #152a3f;
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+      padding: 40px 30px;
       width: 100%;
       max-width: 500px;
+      box-shadow: 0 0 20px rgba(86, 120, 155, 0.3);
+      border: 1px solid #56789b44;
     }
 
     h2 {
       text-align: center;
-      margin-bottom: 24px;
+      font-size: 28px;
       color: #66ccff;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px rgba(102, 204, 255, 0.3);
     }
 
     label {
       display: block;
-      margin-top: 16px;
-      font-weight: 500;
+      margin: 16px 0 6px;
+      font-weight: bold;
+      color: #c0c0c0;
     }
 
     input, select, textarea {
       width: 100%;
-      padding: 10px;
-      margin-top: 6px;
-      border: none;
+      padding: 12px;
       border-radius: 6px;
-      background-color: #1f3b57;
-      color: white;
+      background: #1c324a;
+      border: 1px solid #56789b55;
+      color: #fff;
       font-size: 14px;
+      box-sizing: border-box;
     }
 
     textarea {
@@ -53,29 +57,38 @@
     }
 
     button {
-      width: 100%;
       margin-top: 24px;
-      padding: 12px;
-      font-size: 16px;
-      background-color: #66ccff;
-      border: none;
+      width: 100%;
+      padding: 14px;
+      background: #66ccff;
       color: #0c1c2e;
       font-weight: bold;
+      border: none;
       border-radius: 6px;
+      font-size: 16px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(102, 204, 255, 0.3);
     }
 
     button:hover {
       background-color: #4eb1e4;
+      transform: scale(1.02);
+      box-shadow: 0 0 15px rgba(102, 204, 255, 0.5);
+    }
+
+    @media screen and (max-width: 600px) {
+      .form-box {
+        padding: 25px 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="form-container">
+  <div class="form-box">
     <h2>Waypoint Lead Intake</h2>
     <form id="leadForm">
-      <label for="type">Lead Type:</label>
+      <label for="type">Lead Type</label>
       <select name="type" required>
         <option>Land Buyer</option>
         <option>Realtor</option>
@@ -84,19 +97,19 @@
         <option>Title Company</option>
       </select>
 
-      <label for="name">Name:</label>
+      <label for="name">Name</label>
       <input type="text" name="name" required />
 
-      <label for="contact">Contact Info:</label>
+      <label for="contact">Contact Info</label>
       <input type="text" name="contact" required />
 
-      <label for="location">Location:</label>
+      <label for="location">Location</label>
       <input type="text" name="location" />
 
-      <label for="source">Where Found:</label>
+      <label for="source">Where Found</label>
       <input type="text" name="source" />
 
-      <label for="notes">Notes:</label>
+      <label for="notes">Notes</label>
       <textarea name="notes" rows="4"></textarea>
 
       <button type="submit">Submit Lead</button>
