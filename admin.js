@@ -77,7 +77,8 @@ function displayLeads(leads) {
 row.dataset.id = lead.id; // store doc ID
   });
 
-  document.getElementById("editAllBtn").addEventListener("click", () => {
+  // ⬇️ Add this right after your DOMContentLoaded (or outside any function)
+document.getElementById("editAllBtn").addEventListener("click", () => {
   document.querySelectorAll("#leadsTable td[contenteditable]").forEach(cell => {
     cell.setAttribute("contenteditable", "true");
     cell.style.backgroundColor = "#f1faff";
@@ -111,7 +112,7 @@ document.getElementById("saveAllBtn").addEventListener("click", async () => {
   document.getElementById("saveAllBtn").disabled = true;
 
   alert("All updates saved successfully!");
-  displayLeads(allLeads); // Optional re-render
+  displayLeads(allLeads); // 🔁 Refresh with updated data
 });
 
   // 🎯 Status update live-save
