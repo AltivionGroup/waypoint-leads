@@ -56,19 +56,13 @@
   <option value="Land Buyer">Land Buyer</option>
   <option value="Realtor">Realtor</option>
   <option value="Home Builder">Home Builder</option>
+  <option value="Surveyor">Surveyor</option>
+  <option value="Title Company">Title Company</option>
 </select>
 
 <input type="text" id="searchInput" placeholder="Search by name or location" />
 
 <label for="filterType">Filter by Lead Type:</label>
-<select id="filterType">
-  <option value="All">All</option>
-  <option value="Land Buyer">Land Buyer</option>
-  <option value="Realtor">Realtor</option>
-  <option value="Home Builder">Home Builder</option>
-  <option value="Surveyor">Surveyor</option>
-  <option value="Title Company">Title Company</option>
-</select>
 
 <button id="queryBtn" style="
   margin: 12px 0;
@@ -91,8 +85,6 @@
   border-radius: 6px;
   cursor: pointer;
 ">📁 Export CSV</button>
-
-<button id="exportBtn">Export CSV</button>
 
 <table border="1" id="leadsTable">
   <thead>
