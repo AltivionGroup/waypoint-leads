@@ -1,45 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Waypoint Geospatial – Lead Form</title>
+  <meta charset="UTF-8" />
+  <title>Waypoint Lead Intake</title>
+  <script type="module" src="submit.js" defer></script>
+  <style>
+    body {
+      background-color: #0c1c2e;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: #152a3f;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #66ccff;
+    }
+
+    label {
+      display: block;
+      margin-top: 16px;
+      font-weight: 500;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: none;
+      border-radius: 6px;
+      background-color: #1f3b57;
+      color: white;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 24px;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #66ccff;
+      border: none;
+      color: #0c1c2e;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #4eb1e4;
+    }
+  </style>
 </head>
 <body>
-  <h2>Waypoint Geospatial – Lead Intake Form</h2>
-  <form id="leadForm">
-    <label>Lead Type:</label>
-    <select name="type" required>
-      <option>Land Buyer</option>
-      <option>Realtor</option>
-      <option>Home Builder</option>
-      <option>Surveyor</option>
-      <option>Title Company</option>
-      <option>Mobile Home Dealer</option>
-      <option>Contractor / Landscaper</option>
-      <option>Government Contact</option>
-      <option>Finance / Mortgage</option>
-      <option>Homesteader / Farmer</option>
-    </select><br><br>
+  <div class="form-container">
+    <h2>Waypoint Lead Intake</h2>
+    <form id="leadForm">
+      <label for="type">Lead Type:</label>
+      <select name="type" required>
+        <option>Land Buyer</option>
+        <option>Realtor</option>
+        <option>Home Builder</option>
+        <option>Surveyor</option>
+        <option>Title Company</option>
+      </select>
 
-    <label>Name:</label>
-    <input type="text" name="name" required><br><br>
+      <label for="name">Name:</label>
+      <input type="text" name="name" required />
 
-    <label>Contact Info:</label>
-    <input type="text" name="contact" required><br><br>
+      <label for="contact">Contact Info:</label>
+      <input type="text" name="contact" required />
 
-    <label>Location:</label>
-    <input type="text" name="location"><br><br>
+      <label for="location">Location:</label>
+      <input type="text" name="location" />
 
-    <label>Where Found:</label>
-    <input type="text" name="source"><br><br>
+      <label for="source">Where Found:</label>
+      <input type="text" name="source" />
 
-    <label>Notes:</label>
-    <textarea name="notes"></textarea><br><br>
+      <label for="notes">Notes:</label>
+      <textarea name="notes" rows="4"></textarea>
 
-    <button type="submit">Submit</button>
-  </form>
-
-  <script type="module" src="submit.js"></script>
+      <button type="submit">Submit Lead</button>
+    </form>
+  </div>
 </body>
 </html>
